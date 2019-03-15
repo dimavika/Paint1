@@ -58,7 +58,8 @@ public class Controller {
 
     @FXML
     public void tapOnEllipse(ActionEvent event) {
-
+        mainFigure = new Ellipse();
+        figureList.getFiguresList().add(mainFigure);
     }
 
     @FXML
@@ -69,5 +70,6 @@ public class Controller {
 
     @FXML
     public void tapOnClear(ActionEvent event) {
+        canvas.getGraphicsContext2D().clearRect(0,0,1000,690);
     }
 }
