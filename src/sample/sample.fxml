@@ -9,18 +9,19 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Pane prefHeight="116.0" prefWidth="1000.0">
          <children>
-            <Button layoutX="44.0" layoutY="34.0" mnemonicParsing="false" onAction="#tapOnLine" prefHeight="50.0" prefWidth="100.0" text="Line" />
-            <Button layoutX="180.0" layoutY="34.0" mnemonicParsing="false" onAction="#tapOnCircle" prefHeight="50.0" prefWidth="100.0" text="Circle" />
-            <Button layoutX="316.0" layoutY="34.0" mnemonicParsing="false" onAction="#tapOnSquare" prefHeight="50.0" prefWidth="100.0" text="Square" />
-            <Button layoutX="450.0" layoutY="34.0" mnemonicParsing="false" onAction="#tapOnRect" prefHeight="50.0" prefWidth="100.0" text="Rectangle" />
-            <Button layoutX="582.0" layoutY="34.0" mnemonicParsing="false" onAction="#tapOnEllipse" prefHeight="50.0" prefWidth="100.0" text="Ellipse" />
-            <Button layoutX="718.0" layoutY="34.0" mnemonicParsing="false" onAction="#tapOnTriangle" prefHeight="50.0" prefWidth="100.0" text="Triangle" />
-            <Button layoutX="861.0" layoutY="34.0" mnemonicParsing="false" onAction="#tapOnClear" prefHeight="50.0" prefWidth="100.0" text="Clear" />
+            <Button layoutX="24.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnLine" prefHeight="50.0" prefWidth="90.0" text="Line" />
+            <Button layoutX="129.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnCircle" prefHeight="50.0" prefWidth="90.0" text="Circle" />
+            <Button layoutX="236.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnSquare" prefHeight="50.0" prefWidth="90.0" text="Square" />
+            <Button layoutX="345.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnRect" prefHeight="50.0" prefWidth="90.0" text="Rectangle" />
+            <Button layoutX="452.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnEllipse" prefHeight="50.0" prefWidth="90.0" text="Ellipse" />
+            <Button layoutX="560.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnTriangle" prefHeight="50.0" prefWidth="90.0" text="Triangle" />
+            <Button layoutX="666.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnClear" prefHeight="50.0" prefWidth="90.0" text="Clear" />
+            <Button layoutX="776.0" layoutY="32.0" mnemonicParsing="false" onAction="#Save" prefHeight="50.0" prefWidth="90.0" text="Save" />
+            <Button layoutX="887.0" layoutY="32.0" mnemonicParsing="false" onAction="#Upload" prefHeight="50.0" prefWidth="90.0" text="Upload" />
          </children>
       </Pane>
       <Pane prefHeight="690.0" prefWidth="1000.0">

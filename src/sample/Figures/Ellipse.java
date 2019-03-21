@@ -5,8 +5,12 @@ import javafx.scene.canvas.Canvas;
 public class Ellipse extends MainFigure {
 
 
-    @Override
-    public void Draw(Canvas canvas, double x1, double y1, double x2, double y2) {
-        canvas.getGraphicsContext2D().strokeOval((x1<x2)?x1:x2, (y1<y2)?y1:y2, (x1<x2)?(x2-x1):(x1-x2), (y1<y2)?(y2-y1):(y1-y2));
+    public void Draw(Canvas canvas) {
+        canvas.getGraphicsContext2D().strokeOval((first.x<second.x)?first.x:second.x, (first.y<second.y)?first.y:second.y, (first.x<second.x)?(second.x-first.x):(first.x-second.x), (first.y<second.y)?(second.y-first.y):(first.y-second.y));
     }
+
+    public MainFigure NewObj(){
+        return (new Ellipse());
+    }
+
 }

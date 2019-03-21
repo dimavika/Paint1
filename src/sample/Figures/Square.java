@@ -4,12 +4,14 @@ import javafx.scene.canvas.Canvas;
 
 public class Square extends MainFigure {
 
-    @Override
-    public void Draw(Canvas canvas, double x1, double y1, double x2, double y2) {
-        double sizeX = (x1 < x2) ? (x2 - x1) : (x1 - x2);
-        double sizeY = (y1 < y2) ? (y2 - y1) : (y1 - y2);
+    public void Draw(Canvas canvas) {
+        double sizeX = (first.x < second.x) ? (second.x - first.x) : (first.x - second.x);
+        double sizeY = (first.y < second.y) ? (second.y - first.y) : (first.y - second.y);
         double sizeMin = (sizeX < sizeY) ? sizeX : sizeY;
-        canvas.getGraphicsContext2D().strokeRect((x1 < x2) ? x1 : x2, (y1 < y2) ? y1 : y2, sizeMin, sizeMin);
+        canvas.getGraphicsContext2D().strokeRect((first.x < second.x) ? first.x : second.x, (first.y < second.y) ? first.y : second.y, sizeMin, sizeMin);
     }
 
+    public MainFigure NewObj(){
+        return (new Square());
+    }
 }

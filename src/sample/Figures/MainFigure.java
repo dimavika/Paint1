@@ -1,8 +1,30 @@
 package sample.Figures;
 
 import javafx.scene.canvas.Canvas;
+import sample.Coordinate;
+import java.io.Serializable;
 
-public abstract class MainFigure {
+public abstract class MainFigure implements Serializable {
 
-    abstract public void Draw(Canvas canvas, double x1, double y1, double x2, double y2);
+    public Coordinate getFirst() {
+        return first;
+    }
+
+    public void setFist(Coordinate first) {
+        this.first = first;
+    }
+
+    public Coordinate getSecond() {
+        return second;
+    }
+
+    public void setSecond(Coordinate second) {
+        this.second = second;
+    }
+
+    public Coordinate first= new Coordinate();
+    public Coordinate second =new Coordinate();
+
+    abstract public void Draw(Canvas canvas);
+    abstract public MainFigure NewObj();
 }

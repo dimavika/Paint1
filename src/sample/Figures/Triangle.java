@@ -4,11 +4,13 @@ import javafx.scene.canvas.Canvas;
 
 public class Triangle extends MainFigure {
 
-    @Override
-    public void Draw(Canvas canvas, double x1, double y1, double x2, double y2) {
-        canvas.getGraphicsContext2D().strokeLine(x2,y2,(x1+(x2-x1)/2),y1);
-        canvas.getGraphicsContext2D().strokeLine((x1+(x2-x1)/2),y1,x1,y2);
-        canvas.getGraphicsContext2D().strokeLine(x2,y2,x1,y2);
+    public void Draw(Canvas canvas) {
+        canvas.getGraphicsContext2D().strokeLine(second.x,second.y,(first.x+(second.x-first.x)/2),first.y);
+        canvas.getGraphicsContext2D().strokeLine((first.x+(second.x-first.x)/2),first.y,first.x,second.y);
+        canvas.getGraphicsContext2D().strokeLine(second.x,second.y,first.x,second.y);
     }
 
+    public MainFigure NewObj(){
+        return (new Triangle());
+    }
 }
