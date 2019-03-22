@@ -11,7 +11,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Pane prefHeight="116.0" prefWidth="1000.0">
+      <Pane prefHeight="116.0" prefWidth="1000.0" style="-fx-background-color: orange;">
          <children>
             <Button layoutX="24.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnLine" prefHeight="50.0" prefWidth="90.0" text="Line" />
             <Button layoutX="129.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnCircle" prefHeight="50.0" prefWidth="90.0" text="Circle" />

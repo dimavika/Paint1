@@ -12,5 +12,8 @@ public class FigureList {
     public List<MainFigure> getFiguresList() {
         return figuresList;
     }
+    public void Set(List<MainFigure> a){
+        figuresList=a;
+    }
 
 }

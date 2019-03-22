@@ -2,11 +2,19 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import sample.Figures.*;
 
+import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
 
@@ -32,7 +40,7 @@ public class Controller {
     public void mouseRelease(MouseEvent event) {
         x2 = event.getSceneX();
         y2 = event.getSceneY() - 116;
-        mainFigure.NewObj();
+       mainFigure= mainFigure.NewObj();
         mainFigure.first.x=x1;
         mainFigure.first.y=y1;
         mainFigure.second.x=x2;
@@ -99,12 +107,22 @@ public class Controller {
         numb=in.readLine();
         int numb1 = Integer.parseInt(numb);
         FileInputStream fis = new FileInputStream("serialization");
-        ObjectInputStream oin = new ObjectInputStream(fis);
-        for (int i = 0; i< numb1; i++) {
-            MainFigure upobj = (MainFigure) oin.readObject();
-            figureList.getFiguresList().add(upobj);
-            upobj.Draw(canvas);
+        try {
+            ObjectInputStream oin = new ObjectInputStream(fis);
+            for (int i = 0; i < numb1; i++) {
+                MainFigure upobj = (MainFigure) oin.readObject();
+                figureList.getFiguresList().add(upobj);
+                upobj.Draw(canvas);
+            }
+            oin.close();
+        } catch (Exception ex){
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("error.fxml"));
+            stage.setTitle("Error");
+            stage.setScene(new Scene(root, 250, 250));
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
         }
-        oin.close();
     }
 }
