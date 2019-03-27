@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +10,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Figures.*;
 
-import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +18,9 @@ public class Controller {
 
     private double x1;
     private double y1;
-    private double x2;
-    private double y2;
 
-    private FigureList figureList = new FigureList();
-    private MainFigure mainFigure = new Square();
-    private String numb;
+    private List<MainFigure> figureList = new ArrayList<>();
+    private MainFigure mainFigure = new Line();
 
     @FXML
     Canvas canvas;
@@ -38,82 +33,75 @@ public class Controller {
 
     @FXML
     public void mouseRelease(MouseEvent event) {
-        x2 = event.getSceneX();
-        y2 = event.getSceneY() - 116;
-       mainFigure= mainFigure.NewObj();
+        double x2 = event.getSceneX();
+        double y2 = event.getSceneY() - 116;
+        mainFigure= mainFigure.NewObj();
         mainFigure.first.x=x1;
         mainFigure.first.y=y1;
-        mainFigure.second.x=x2;
-        mainFigure.second.y=y2;
+        mainFigure.second.x= x2;
+        mainFigure.second.y= y2;
         mainFigure.Draw(canvas);
-        figureList.getFiguresList().add(mainFigure);
+        figureList.add(mainFigure);
     }
 
     @FXML
-    public void tapOnLine(ActionEvent event) {
+    public void tapOnLine() {
        mainFigure = new Line();
     }
 
     @FXML
-    public void tapOnCircle(ActionEvent event) {
+    public void tapOnCircle() {
         mainFigure = new Circle();
     }
 
     @FXML
-    public void tapOnSquare(ActionEvent event) {
+    public void tapOnSquare() {
         mainFigure = new Square();
     }
 
     @FXML
-    public void tapOnRect(ActionEvent event) {
+    public void tapOnRect() {
         mainFigure = new Rectangle();
     }
 
     @FXML
-    public void tapOnEllipse(ActionEvent event) {
+    public void tapOnEllipse() {
         mainFigure = new Ellipse();
     }
 
     @FXML
-    public void tapOnTriangle(ActionEvent event) {
+    public void tapOnTriangle() {
         mainFigure = new Triangle();
     }
 
     @FXML
-    public void tapOnClear(ActionEvent event) {
+    public void tapOnClear() {
         canvas.getGraphicsContext2D().clearRect(0,0,1000,690);
-        figureList.getFiguresList().clear();
+        figureList.clear();
+    }
+
+    private void PaintAll(List<MainFigure> list){
+        for (MainFigure obj: list){
+            obj.Draw(canvas);
+        }
     }
 
     @FXML
-    public void Save(ActionEvent event) throws IOException {
+    public void Save() throws IOException {
         FileOutputStream fos = new FileOutputStream("serialization");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
-        for(int i = 0; i < figureList.getFiguresList().size();i++) {
-            oos.writeObject(figureList.getFiguresList().get(i));
-        }
+        oos.writeObject(figureList);
         oos.flush();
         oos.close();
-
-        numb = Integer.toString(figureList.getFiguresList().size());
-        FileWriter writer = new FileWriter("numb.txt",false);
-        writer.write(numb);
-        writer.close();
     }
 
     @FXML
-    public void Upload(ActionEvent event) throws IOException, ClassNotFoundException {
-        BufferedReader in = new BufferedReader(new FileReader("numb.txt"));
-        numb=in.readLine();
-        int numb1 = Integer.parseInt(numb);
+    public void Upload() throws IOException {
         FileInputStream fis = new FileInputStream("serialization");
         try {
             ObjectInputStream oin = new ObjectInputStream(fis);
-            for (int i = 0; i < numb1; i++) {
-                MainFigure upobj = (MainFigure) oin.readObject();
-                figureList.getFiguresList().add(upobj);
-                upobj.Draw(canvas);
-            }
+            figureList = (List<MainFigure>) oin.readObject();
+            PaintAll(figureList);
             oin.close();
         } catch (Exception ex){
             Stage stage = new Stage();

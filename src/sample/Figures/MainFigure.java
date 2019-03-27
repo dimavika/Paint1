@@ -6,22 +6,6 @@ import java.io.Serializable;
 
 public abstract class MainFigure implements Serializable {
 
-    public Coordinate getFirst() {
-        return first;
-    }
-
-    public void setFist(Coordinate first) {
-        this.first = first;
-    }
-
-    public Coordinate getSecond() {
-        return second;
-    }
-
-    public void setSecond(Coordinate second) {
-        this.second = second;
-    }
-
     public Coordinate first= new Coordinate();
     public Coordinate second =new Coordinate();
 
