@@ -26,7 +26,7 @@
       </Pane>
       <Pane prefHeight="690.0" prefWidth="1000.0">
          <children>
-            <Canvas fx:id="canvas" height="687.0" onMousePressed="#mouseClick" onMouseReleased="#mouseRelease" width="1000.0" />
+            <Canvas fx:id="canvas" height="687.0" onMouseDragged="#mouseDragged" onMousePressed="#mouseClick" onMouseReleased="#mouseRelease" width="1000.0" />
          </children>
       </Pane>
    </children>

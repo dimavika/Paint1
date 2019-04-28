@@ -18,6 +18,8 @@ public class Controller {
 
     private double x1;
     private double y1;
+    private double x2;
+    private double y2;
 
     private List<MainFigure> figureList = new ArrayList<>();
     private MainFigure mainFigure = new Line();
@@ -29,19 +31,33 @@ public class Controller {
     public void mouseClick(MouseEvent event) {
         x1 = event.getSceneX();
         y1 = event.getSceneY() - 116;
+        mainFigure = mainFigure.NewObj();
     }
 
     @FXML
-    public void mouseRelease(MouseEvent event) {
-        double x2 = event.getSceneX();
-        double y2 = event.getSceneY() - 116;
-        mainFigure= mainFigure.NewObj();
+    public void mouseDragged(MouseEvent event) {
+        canvas.getGraphicsContext2D().clearRect(0,0,canvas.getWidth(),canvas.getHeight());
+        x2 = event.getSceneX();
+        y2 = event.getSceneY() - 116;
         mainFigure.first.x=x1;
         mainFigure.first.y=y1;
         mainFigure.second.x= x2;
         mainFigure.second.y= y2;
+        PaintAll(figureList);
         mainFigure.Draw(canvas);
+    }
+
+    @FXML
+    public void mouseRelease(MouseEvent event) {
+        canvas.getGraphicsContext2D().clearRect(0,0,canvas.getWidth(),canvas.getHeight());
+        x2 = event.getSceneX();
+        y2 = event.getSceneY() - 116;
+        mainFigure.first.x=x1;
+        mainFigure.first.y=y1;
+        mainFigure.second.x= x2;
+        mainFigure.second.y= y2;
         figureList.add(mainFigure);
+        PaintAll(figureList);
     }
 
     @FXML
@@ -97,6 +113,8 @@ public class Controller {
 
     @FXML
     public void Upload() throws IOException {
+        canvas.getGraphicsContext2D().clearRect(0,0,canvas.getWidth(),canvas.getHeight());
+        figureList.clear();
         FileInputStream fis = new FileInputStream("serialization");
         try {
             ObjectInputStream oin = new ObjectInputStream(fis);
