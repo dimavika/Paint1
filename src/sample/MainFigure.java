@@ -1,7 +1,7 @@
-package sample.Figures;
+package sample;
 
 import javafx.scene.canvas.Canvas;
-import sample.Coordinate;
+
 import java.io.Serializable;
 
 public abstract class MainFigure implements Serializable {

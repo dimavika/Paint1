@@ -11,14 +11,8 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Pane prefHeight="116.0" prefWidth="1000.0" style="-fx-background-color: orange;">
+      <Pane fx:id="Pane1" prefHeight="116.0" prefWidth="1000.0" style="-fx-background-color: orange;">
          <children>
-            <Button layoutX="24.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnLine" prefHeight="50.0" prefWidth="90.0" text="Line" />
-            <Button layoutX="129.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnCircle" prefHeight="50.0" prefWidth="90.0" text="Circle" />
-            <Button layoutX="236.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnSquare" prefHeight="50.0" prefWidth="90.0" text="Square" />
-            <Button layoutX="345.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnRect" prefHeight="50.0" prefWidth="90.0" text="Rectangle" />
-            <Button layoutX="452.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnEllipse" prefHeight="50.0" prefWidth="90.0" text="Ellipse" />
-            <Button layoutX="560.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnTriangle" prefHeight="50.0" prefWidth="90.0" text="Triangle" />
             <Button layoutX="666.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnClear" prefHeight="50.0" prefWidth="90.0" text="Clear" />
             <Button layoutX="776.0" layoutY="32.0" mnemonicParsing="false" onAction="#Save" prefHeight="50.0" prefWidth="90.0" text="Save" />
             <Button layoutX="887.0" layoutY="32.0" mnemonicParsing="false" onAction="#Upload" prefHeight="50.0" prefWidth="90.0" text="Upload" />

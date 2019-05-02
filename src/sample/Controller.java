@@ -5,10 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.Figures.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,16 +22,67 @@ public class Controller {
     private double x2;
     private double y2;
 
+    //private String modulePath = "D:/Уник/ООП/Paint/out/production/Paint/sample/Figures/";
+    private String modulePath = "D:/Уник/ООП/Paint/Figures/";
+
     private List<MainFigure> figureList = new ArrayList<>();
-    private MainFigure mainFigure = new Line();
+    private MainFigure mainFigure;
+    private List<Class<?>> classList = new ArrayList<>();
+    private List<Button> btnList = new ArrayList<>();
+
 
     @FXML
     Canvas canvas;
 
     @FXML
+    Pane Pane1;
+
+    public Controller() {
+    }
+
+    @FXML
+    public void initialize(){
+        ClassLoaderr loader = new ClassLoaderr(modulePath,"sample.Figures", ClassLoader.getSystemClassLoader());
+
+        File dir = new File(modulePath);
+        String[] modules = dir.list();
+
+        for (String module: modules) {
+            try {
+                String moduleName = module.split(".class")[0];
+                Class clazz = loader.loadClass(moduleName);
+                classList.add(clazz);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        for (int i = 0; i < classList.size(); i++) {
+            String btnName = classList.get(i).getName().substring(15);
+            btnList.add(new Button(btnName));
+            btnList.get(i).setPrefHeight(50);
+            btnList.get(i).setPrefWidth(90);
+            btnList.get(i).setLayoutY(33);
+            if (i == 0) {
+                btnList.get(i).setLayoutX(10);
+            } else
+            btnList.get(i).setLayoutX(100*i + 10);
+            final int e = i;
+            btnList.get(i).setOnAction(event -> {
+                try {
+                    mainFigure = (MainFigure) classList.get(e).newInstance();
+                } catch (InstantiationException | IllegalAccessException e1) {
+                    e1.printStackTrace();
+                }
+            });
+            Pane1.getChildren().add(btnList.get(i));
+        }
+    }
+
+    @FXML
     public void mouseClick(MouseEvent event) {
         x1 = event.getSceneX();
         y1 = event.getSceneY() - 116;
+        if (mainFigure != null)
         mainFigure = mainFigure.NewObj();
     }
 
@@ -39,12 +91,14 @@ public class Controller {
         canvas.getGraphicsContext2D().clearRect(0,0,canvas.getWidth(),canvas.getHeight());
         x2 = event.getSceneX();
         y2 = event.getSceneY() - 116;
-        mainFigure.first.x=x1;
-        mainFigure.first.y=y1;
-        mainFigure.second.x= x2;
-        mainFigure.second.y= y2;
+        if (mainFigure != null) {
+            mainFigure.first.x = x1;
+            mainFigure.first.y = y1;
+            mainFigure.second.x = x2;
+            mainFigure.second.y = y2;
+            mainFigure.Draw(canvas);
+        }
         PaintAll(figureList);
-        mainFigure.Draw(canvas);
     }
 
     @FXML
@@ -52,42 +106,14 @@ public class Controller {
         canvas.getGraphicsContext2D().clearRect(0,0,canvas.getWidth(),canvas.getHeight());
         x2 = event.getSceneX();
         y2 = event.getSceneY() - 116;
-        mainFigure.first.x=x1;
-        mainFigure.first.y=y1;
-        mainFigure.second.x= x2;
-        mainFigure.second.y= y2;
-        figureList.add(mainFigure);
+        if (mainFigure != null) {
+            mainFigure.first.x = x1;
+            mainFigure.first.y = y1;
+            mainFigure.second.x = x2;
+            mainFigure.second.y = y2;
+            figureList.add(mainFigure);
+        }
         PaintAll(figureList);
-    }
-
-    @FXML
-    public void tapOnLine() {
-       mainFigure = new Line();
-    }
-
-    @FXML
-    public void tapOnCircle() {
-        mainFigure = new Circle();
-    }
-
-    @FXML
-    public void tapOnSquare() {
-        mainFigure = new Square();
-    }
-
-    @FXML
-    public void tapOnRect() {
-        mainFigure = new Rectangle();
-    }
-
-    @FXML
-    public void tapOnEllipse() {
-        mainFigure = new Ellipse();
-    }
-
-    @FXML
-    public void tapOnTriangle() {
-        mainFigure = new Triangle();
     }
 
     @FXML
