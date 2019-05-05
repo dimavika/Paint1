@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.canvas.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Pane fx:id="Pane1" prefHeight="116.0" prefWidth="1000.0" style="-fx-background-color: orange;">
+      <Pane fx:id="Pane1" prefHeight="110.0" prefWidth="1000.0" style="-fx-background-color: orange;">
          <children>
             <Button layoutX="666.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnClear" prefHeight="50.0" prefWidth="90.0" text="Clear" />
             <Button layoutX="776.0" layoutY="32.0" mnemonicParsing="false" onAction="#Save" prefHeight="50.0" prefWidth="90.0" text="Save" />
@@ -20,7 +16,7 @@
       </Pane>
       <Pane prefHeight="690.0" prefWidth="1000.0">
          <children>
-            <Canvas fx:id="canvas" height="687.0" onMouseDragged="#mouseDragged" onMousePressed="#mouseClick" onMouseReleased="#mouseRelease" width="1000.0" />
+            <Canvas fx:id="canvas" height="690.0" onMouseDragged="#mouseDragged" onMousePressed="#mouseClick" onMouseReleased="#mouseRelease" width="1000.0" />
          </children>
       </Pane>
    </children>

@@ -22,8 +22,7 @@ public class Controller {
     private double x2;
     private double y2;
 
-    //private String modulePath = "D:/Уник/ООП/Paint/out/production/Paint/sample/Figures/";
-    private String modulePath = "D:/Уник/ООП/Paint/Figures/";
+    private String modulePath = "/Users/dimavi_ka/IdeaProjects/Paint1/out/production/Paint/sample/Figures/";
 
     private List<MainFigure> figureList = new ArrayList<>();
     private MainFigure mainFigure;
@@ -81,7 +80,7 @@ public class Controller {
     @FXML
     public void mouseClick(MouseEvent event) {
         x1 = event.getSceneX();
-        y1 = event.getSceneY() - 116;
+        y1 = event.getSceneY() - 110;
         if (mainFigure != null)
         mainFigure = mainFigure.NewObj();
     }
@@ -90,7 +89,7 @@ public class Controller {
     public void mouseDragged(MouseEvent event) {
         canvas.getGraphicsContext2D().clearRect(0,0,canvas.getWidth(),canvas.getHeight());
         x2 = event.getSceneX();
-        y2 = event.getSceneY() - 116;
+        y2 = event.getSceneY() - 110;
         if (mainFigure != null) {
             mainFigure.first.x = x1;
             mainFigure.first.y = y1;
@@ -105,7 +104,7 @@ public class Controller {
     public void mouseRelease(MouseEvent event) {
         canvas.getGraphicsContext2D().clearRect(0,0,canvas.getWidth(),canvas.getHeight());
         x2 = event.getSceneX();
-        y2 = event.getSceneY() - 116;
+        y2 = event.getSceneY() - 110;
         if (mainFigure != null) {
             mainFigure.first.x = x1;
             mainFigure.first.y = y1;
