@@ -6,14 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller {
 
@@ -22,7 +26,8 @@ public class Controller {
     private double x2;
     private double y2;
 
-    private String modulePath = "/Users/dimavi_ka/IdeaProjects/Paint1/out/production/Paint/sample/Figures/";
+    //private String modulePath = "out/production/Paint/sample/Figures/";
+    private String modulePath = "./Figures/";
 
     private List<MainFigure> figureList = new ArrayList<>();
     private MainFigure mainFigure;
@@ -36,35 +41,53 @@ public class Controller {
     @FXML
     Pane Pane1;
 
+    @FXML
+    ColorPicker colorPicker;
+
     public Controller() {
     }
 
     @FXML
     public void initialize(){
+        colorPicker.setValue(Color.BLACK);
         ClassLoaderr loader = new ClassLoaderr(modulePath,"sample.Figures", ClassLoader.getSystemClassLoader());
 
-        File dir = new File(modulePath);
+        String absolutePath = new File(modulePath).getAbsolutePath();
+        File dir = new File(absolutePath);
         String[] modules = dir.list();
 
-        for (String module: modules) {
-            try {
-                String moduleName = module.split(".class")[0];
-                Class clazz = loader.loadClass(moduleName);
-                classList.add(clazz);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+        if (modules != null) {
+            for (String module : modules) {
+                try {
+                    Pattern pattern = Pattern.compile(".class");
+                    Matcher matcher = pattern.matcher(module);
+                    if (matcher.find(0)) {
+                        String moduleName = module.split(".class")[0];
+                        Class clazz = loader.loadClass(moduleName);
+                        classList.add(clazz);
+                    }
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
+
+        int five = 0;
         for (int i = 0; i < classList.size(); i++) {
             String btnName = classList.get(i).getName().substring(15);
             btnList.add(new Button(btnName));
-            btnList.get(i).setPrefHeight(50);
+            btnList.get(i).setPrefHeight(35);
             btnList.get(i).setPrefWidth(90);
-            btnList.get(i).setLayoutY(33);
+            btnList.get(i).setLayoutY(10);
             if (i == 0) {
-                btnList.get(i).setLayoutX(10);
-            } else
-            btnList.get(i).setLayoutX(100*i + 10);
+                btnList.get(i).setLayoutX(165);
+            } else if (i<5){
+                btnList.get(i).setLayoutX(100 * i + 165);
+            } else {
+                btnList.get(i).setLayoutX(five * 100 + 165);
+                btnList.get(i).setLayoutY(54);
+                five++;
+            }
             final int e = i;
             btnList.get(i).setOnAction(event -> {
                 try {
@@ -95,6 +118,7 @@ public class Controller {
             mainFigure.first.y = y1;
             mainFigure.second.x = x2;
             mainFigure.second.y = y2;
+            canvas.getGraphicsContext2D().setStroke(colorPicker.getValue());
             mainFigure.Draw(canvas);
         }
         PaintAll(figureList);
@@ -110,6 +134,7 @@ public class Controller {
             mainFigure.first.y = y1;
             mainFigure.second.x = x2;
             mainFigure.second.y = y2;
+            mainFigure.setColor(colorPicker.getValue().toString());
             figureList.add(mainFigure);
         }
         PaintAll(figureList);
@@ -123,6 +148,7 @@ public class Controller {
 
     private void PaintAll(List<MainFigure> list){
         for (MainFigure obj: list){
+            canvas.getGraphicsContext2D().setStroke(Color.valueOf(obj.getColor()));
             obj.Draw(canvas);
         }
     }

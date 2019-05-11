@@ -1,6 +1,7 @@
 package sample.Figures;
 
 import javafx.scene.canvas.Canvas;
+import sample.Controller;
 import sample.MainFigure;
 
 public class Circle extends MainFigure {

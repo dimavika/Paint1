@@ -2,16 +2,18 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Pane fx:id="Pane1" prefHeight="110.0" prefWidth="1000.0" style="-fx-background-color: orange;">
+      <Pane fx:id="Pane1" prefHeight="110.0" prefWidth="1000.0" style="-fx-background-color: purple;">
          <children>
-            <Button layoutX="666.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnClear" prefHeight="50.0" prefWidth="90.0" text="Clear" />
-            <Button layoutX="776.0" layoutY="32.0" mnemonicParsing="false" onAction="#Save" prefHeight="50.0" prefWidth="90.0" text="Save" />
-            <Button layoutX="887.0" layoutY="32.0" mnemonicParsing="false" onAction="#Upload" prefHeight="50.0" prefWidth="90.0" text="Upload" />
+            <Button layoutX="666.0" layoutY="32.0" mnemonicParsing="false" onAction="#tapOnClear" prefHeight="35.0" prefWidth="90.0" text="Clear" />
+            <Button layoutX="776.0" layoutY="32.0" mnemonicParsing="false" onAction="#Save" prefHeight="35.0" prefWidth="90.0" text="Save" />
+            <Button layoutX="887.0" layoutY="32.0" mnemonicParsing="false" onAction="#Upload" prefHeight="35.0" prefWidth="90.0" text="Upload" />
+            <ColorPicker fx:id="colorPicker" layoutX="14.0" layoutY="36.0" />
          </children>
       </Pane>
       <Pane prefHeight="690.0" prefWidth="1000.0">
